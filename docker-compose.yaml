@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  init:
+    image: gha-token:latest
+    command:
+      - ${GITHUB_APP_ID}
+      - ${GITHUB_INSTALLATION_ID}
+      - /run/secrets/github_private_key
+    build:
+      dockerfile: Dockerfile.pat
+    secrets:
+      - github_private_key
+    volumes:
+      - ./.env:/app/.env:rw
+  mountain-hawk:
+    image: mountain-hawk:latest
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./.env:/app/.env:rw
+    depends_on:
+      init:
+        condition: service_completed_successfully
+secrets:
+  github_private_key:
+    file: ./secrets/github.pem
