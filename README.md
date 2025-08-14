@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- **Docker & Docker Compose**: For running the GitHub MCP server
+- **Docker & Docker Compose**: For running the Mountain Hawk CLI and/or server
 - **Go 1.24.1+**: For building and running the reviewer application
 - **Ollama**: For running the AI model locally
 - **GitHub App or PAT**: For GitHub API access
